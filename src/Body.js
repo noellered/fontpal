@@ -36,7 +36,8 @@ class Body extends Component {
 
     state = {
         headerValue: '',
-        bodyValue: ''
+        bodyValue: '',
+        myGradient: 'blueGradient'
     }
 
     //Sets font choice for Header text
@@ -63,13 +64,21 @@ class Body extends Component {
         });
     }
 
+    
+    //When button clicked, sets state of gradient to random from array
+    randomizeGradient = () => {
+        const availableGradients = ['blueGradient', 'greenGradient', 'purpleGradient', 'orangeGradient', 'magentaGradient', 'bubblegumGradient']
+        let i = Math.floor(Math.random() * availableGradients.length)
+        this.setState({myGradient: availableGradients[i]});
+    }
+
     render(){
 
         return(
             // including CSS here so gradient can be made dynamic later on
             <div> 
-                <Header onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} />
-                <div className="body-div" style={{color: "white", background: "linear-gradient(25deg, rgba(81,115,233,1) 0%, rgba(49,172,198,1) 62%)"}}> 
+                <Header onButtonClick={this.randomizeGradient} onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} />
+                <div className={`body-div ${this.state.myGradient}`}> 
                     <HeaderText fontFamily={this.state.headerValue}/>
                     <SpanText fontFamily={this.state.bodyValue} />
                 </div>

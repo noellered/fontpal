@@ -132,6 +132,39 @@ textarea {
   cursor: pointer; /* Cursor on hover */
 }
 
+/* Gradient Classes */
+.blueGradient {
+  color: white;
+  background: linear-gradient(25deg, rgba(81,115,233,1) 0%, rgba(49,172,198,1) 62%);
+}
+
+.greenGradient{
+  color: white;
+  background: linear-gradient(25deg, rgba(24,170,172,1) 0%, rgba(34,195,147,1) 90%);
+}
+
+.purpleGradient{
+  color: white;
+  background: linear-gradient(25deg, rgba(51,24,172,1) 0%, rgba(195,34,100,1) 99%);
+}
+
+.orangeGradient{
+  color: white;
+  background: linear-gradient(25deg, rgba(231,138,33,1) 0%, rgba(241,200,0,1) 99%);
+}
+
+.magentaGradient{
+  background: rgb(63,94,251);
+  background: linear-gradient(50deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+
+.bubblegumGradient{
+  background: rgb(196,137,163);
+  background: linear-gradient(25deg, rgb(204, 127, 161) 20%, rgb(114, 166, 226) 85%);
+}
+
+
+
 /* Other Styles */
 
 
