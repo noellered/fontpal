@@ -32,6 +32,26 @@ select {
   border: 1px solid slategray;
 }
 
+/* Button Styling */
+button {
+  font-size: 1.25rem;
+  font-family: roboto;
+  margin: 1rem;
+  transition: 0.3s ease-in-out;
+  max-height: 4rem;
+  border-radius: .35rem;
+  border: 1px solid slategray;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background: rgb(45, 147, 206);
+  color: #fff;
+  cursor: pointer;
+}
 
 /* Full Page Container Styling */
 html, body{
