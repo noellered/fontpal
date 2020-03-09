@@ -30,7 +30,6 @@ class Dropdown extends Component {
                     <select value={this.props.value} onChange={this.props.onChange}>
                         {this.state.fonts.map((family) => <option key={family} value={family}> {family} </option>)}
                     </select>
-                    
             </form>
         );
     }

@@ -3,7 +3,22 @@ import Dropdown from './Dropdown';
 
 
 class Header extends React.Component {
-    
+    state = { 
+        availableGradients: [
+            'blueGradient', 
+            'greenGradient', 
+            'purpleGradient', 
+            'orangeGradient', 
+            'magentaGradient', 
+            'bubblegumGradient', 
+            'sherbetGradient', 
+            'violetGradient',
+            'forestGradient',
+            'dreamyGradient',
+            'wineGradient', 
+            'fireGradient'
+        ] 
+    }
 
     render(){
 
@@ -14,6 +29,7 @@ class Header extends React.Component {
                         <Dropdown textType="Body" onChange={this.props.onBodyChange} value={this.props.bodyValue} />
                     </div>
                     <button onClick={this.props.onButtonClick}>Change Gradient</button>
+                    
                 </header>
         );
     }

@@ -67,7 +67,20 @@ class Body extends Component {
     
     //When button clicked, sets state of gradient to random from array
     randomizeGradient = () => {
-        const availableGradients = ['blueGradient', 'greenGradient', 'purpleGradient', 'orangeGradient', 'magentaGradient', 'bubblegumGradient']
+        const availableGradients = [
+        'blueGradient', 
+        'greenGradient', 
+        'purpleGradient', 
+        'orangeGradient', 
+        'magentaGradient', 
+        'bubblegumGradient', 
+        'sherbetGradient', 
+        'violetGradient',
+        'forestGradient',
+        'dreamyGradient',
+        'wineGradient', 
+        'fireGradient'
+        ]
         let i = Math.floor(Math.random() * availableGradients.length)
         this.setState({myGradient: availableGradients[i]});
     }
