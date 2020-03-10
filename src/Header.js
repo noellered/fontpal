@@ -5,18 +5,18 @@ import Dropdown from './Dropdown';
 class Header extends React.Component {
     state = { 
         availableGradients: [
-            'blueGradient', 
-            'greenGradient', 
-            'purpleGradient', 
-            'orangeGradient', 
-            'magentaGradient', 
-            'bubblegumGradient', 
-            'sherbetGradient', 
-            'violetGradient',
-            'forestGradient',
-            'dreamyGradient',
-            'wineGradient', 
-            'fireGradient'
+            'blue', 
+            'seafoam', 
+            'purple', 
+            'orange', 
+            'magenta', 
+            'bubblegum', 
+            'sherbet', 
+            'violet',
+            'forest',
+            'dreamy',
+            'wine', 
+            'fire'
         ] 
     }
 
@@ -28,8 +28,14 @@ class Header extends React.Component {
                         <Dropdown textType="Header" onChange={this.props.onHeaderChange} value={this.props.headerValue}/>
                         <Dropdown textType="Body" onChange={this.props.onBodyChange} value={this.props.bodyValue} />
                     </div>
-                    <button onClick={this.props.onButtonClick}>Change Gradient</button>
-                    
+                    <form>
+                        <div>
+                            <label>Choose a Background Gradient:</label>
+                            <select value={this.props.value} onChange={this.props.onGradientChange}>
+                                {this.state.availableGradients.map((myGradient) => <option key={myGradient} value={myGradient}> {myGradient} </option>)}
+                            </select>
+                        </div>
+                    </form>
                 </header>
         );
     }

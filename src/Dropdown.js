@@ -25,7 +25,7 @@ class Dropdown extends Component {
     render(){
         let textType = this.props.textType;
         return(    
-            <form>
+            <form className="textSelectors">
                     <label>Choose a {textType} Family:</label>
                     <select value={this.props.value} onChange={this.props.onChange}>
                         {this.state.fonts.map((family) => <option key={family} value={family}> {family} </option>)}

@@ -37,7 +37,7 @@ class Body extends Component {
     state = {
         headerValue: '',
         bodyValue: '',
-        myGradient: 'blueGradient'
+        myGradient: 'blue'
     }
 
     //Sets font choice for Header text
@@ -64,33 +64,39 @@ class Body extends Component {
         });
     }
 
-    
-    //When button clicked, sets state of gradient to random from array
-    randomizeGradient = () => {
-        const availableGradients = [
-        'blueGradient', 
-        'greenGradient', 
-        'purpleGradient', 
-        'orangeGradient', 
-        'magentaGradient', 
-        'bubblegumGradient', 
-        'sherbetGradient', 
-        'violetGradient',
-        'forestGradient',
-        'dreamyGradient',
-        'wineGradient', 
-        'fireGradient'
-        ]
-        let i = Math.floor(Math.random() * availableGradients.length)
-        this.setState({myGradient: availableGradients[i]});
+    //Sets gradient to selected
+    handleGradientChange = (e) => {
+        let selectedGradient = e.target.value;
+        e.preventDefault();
+        this.setState({myGradient: selectedGradient});
     }
+
+
+    // //When button clicked, sets state of gradient to random from array
+    // randomizeGradient = () => {
+    //     const availableGradients = [
+    //     'blue', 
+    //     'seafoam', 
+    //     'purple', 
+    //     'orange', 
+    //     'magenta', 
+    //     'bubblegum', 
+    //     'sherbet', 
+    //     'violet',
+    //     'forest',
+    //     'dreamy',
+    //     'wine', 
+    //     'fire'
+    //     ]
+    //     let i = Math.floor(Math.random() * availableGradients.length)
+    //     this.setState({myGradient: availableGradients[i]});
+    // }
 
     render(){
 
         return(
-            // including CSS here so gradient can be made dynamic later on
             <div> 
-                <Header onButtonClick={this.randomizeGradient} onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} />
+                <Header onButtonClick={this.randomizeGradient} onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} onGradientChange={this.handleGradientChange}/>
                 <div className={`body-div ${this.state.myGradient}`}> 
                     <HeaderText fontFamily={this.state.headerValue}/>
                     <SpanText fontFamily={this.state.bodyValue} />
