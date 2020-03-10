@@ -6,6 +6,7 @@ class Dropdown extends Component {
     super(props);
     this.state = {
       fonts: [],
+      categories: []
     }
 
   }
@@ -18,7 +19,10 @@ class Dropdown extends Component {
       .then(res => {
           return res.json();
       }).then((JSON) => {
-        this.setState({fonts: JSON.items.map(item => item.family)});
+        this.setState({
+          fonts: JSON.items.map(item => item.family),
+          //categories: JSON.items.map(item => item.category)
+        });
       })
   }
 
