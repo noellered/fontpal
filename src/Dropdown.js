@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 
+
 class Dropdown extends Component {
    
   constructor(props){
     super(props);
     this.state = {
       fonts: [],
-      categories: []
+      categories: [],
+      sansSerif: [],
+      serif: [],
+      handwriting: [],
+      display: [],
+      monospace: []
     }
 
   }
@@ -21,20 +27,71 @@ class Dropdown extends Component {
       }).then((JSON) => {
         this.setState({
           fonts: JSON.items.map(item => item.family),
-          //categories: JSON.items.map(item => item.category)
+          categories: JSON.items.map(item => item.category)
         });
+        const sansSerifFonts = [];
+        const serifFonts = [];
+        const handwritingFonts = [];
+        const displayFonts = [];
+        const monospaceFonts = [];
+
+        //iterate through fonts array and categorize fonts by type
+        for(var i=0; i < this.state.fonts.length; i++){
+          if(this.state.categories[i] === "sans-serif"){
+            sansSerifFonts.push(this.state.fonts[i]);
+          } else if(this.state.categories[i] === "serif"){
+            serifFonts.push(this.state.fonts[i]);
+          } else if(this.state.categories[i] === "handwriting"){
+            handwritingFonts.push(this.state.fonts[i]);
+          } else if(this.state.categories[i] === "display"){
+            displayFonts.push(this.state.fonts[i]);
+          } else if(this.state.categories[i] === "monospace"){
+            monospaceFonts.push(this.state.fonts[i]);
+          }
+        }
+        this.setState({
+          sansSerif: sansSerifFonts,
+          serif: serifFonts,
+          handwriting: handwritingFonts,
+          display: displayFonts,
+          monospace: monospaceFonts
+        })
       })
   }
+
+
+
 
     render(){
         let textType = this.props.textType;
         return(    
+            // <form className="textSelectors">
+            //         <label>Choose a {textType} Family:</label>
+            //         <select value={this.props.value} onChange={this.props.onChange}>
+            //             {this.state.fonts.map((family) => <option key={family} value={family}> {family} </option>)}
+            //         </select>
+            // </form>
+
             <form className="textSelectors">
-                    <label>Choose a {textType} Family:</label>
-                    <select value={this.props.value} onChange={this.props.onChange}>
-                        {this.state.fonts.map((family) => <option key={family} value={family}> {family} </option>)}
-                    </select>
-            </form>
+            <label>Choose a {textType} Family:</label>
+            <select value={this.props.value} onChange={this.props.onChange}>
+              <optgroup label="Sans-Serif Fonts">
+                {this.state.sansSerif.map((family) => <option key={family} value={family}> {family} </option>)}
+              </optgroup>
+              <optgroup label="Serif Fonts">
+                {this.state.serif.map((family) => <option key={family} value={family}> {family} </option>)}
+              </optgroup>
+              <optgroup label="Display Fonts">
+                {this.state.display.map((family) => <option key={family} value={family}> {family} </option>)}
+              </optgroup>
+              <optgroup label="Handwriting Fonts">
+                {this.state.handwriting.map((family) => <option key={family} value={family}> {family} </option>)}
+              </optgroup>
+              <optgroup label="Monospace Fonts">
+                {this.state.monospace.map((family) => <option key={family} value={family}> {family} </option>)}
+              </optgroup>
+            </select>
+    </form>
         );
     }
 }

@@ -16,7 +16,7 @@ class HeaderText extends Component {
 
     render(){
         return(
-            <TextareaAutosize value={this.state.userInput} onChange={this.handleUserInput} key={this.props.fontFamily} spellcheck="false" className="header-text" style={{fontFamily: this.props.fontFamily}}></TextareaAutosize>
+           <TextareaAutosize value={this.state.userInput} onChange={this.handleUserInput} key={this.props.fontFamily} spellcheck="false" className="header-text" style={{fontFamily: this.props.fontFamily}}></TextareaAutosize>
         );
     }
 }
@@ -72,31 +72,12 @@ class Body extends Component {
     }
 
 
-    // //When button clicked, sets state of gradient to random from array
-    // randomizeGradient = () => {
-    //     const availableGradients = [
-    //     'blue', 
-    //     'seafoam', 
-    //     'purple', 
-    //     'orange', 
-    //     'magenta', 
-    //     'bubblegum', 
-    //     'sherbet', 
-    //     'violet',
-    //     'forest',
-    //     'dreamy',
-    //     'wine', 
-    //     'fire'
-    //     ]
-    //     let i = Math.floor(Math.random() * availableGradients.length)
-    //     this.setState({myGradient: availableGradients[i]});
-    // }
 
     render(){
 
         return(
             <div> 
-                <Header onButtonClick={this.randomizeGradient} onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} onGradientChange={this.handleGradientChange}/>
+                <Header onHeaderChange={this.handleHeaderChange} headerValue={this.state.headerValue} onBodyChange={this.handleBodyChange} bodyValue={this.state.bodyValue} onGradientChange={this.handleGradientChange}/>
                 <div className={`body-div ${this.state.myGradient}`}> 
                     <HeaderText fontFamily={this.state.headerValue}/>
                     <SpanText fontFamily={this.state.bodyValue} />
