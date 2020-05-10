@@ -49,7 +49,7 @@ button:active {
 }
 button:hover {
   cursor: pointer;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 /* Full Page Container Styling */

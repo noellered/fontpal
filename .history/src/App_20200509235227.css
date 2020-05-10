@@ -45,11 +45,10 @@ button:focus {
   outline: none;
 }
 button:active {
-  color: black;
+
 }
 button:hover {
   cursor: pointer;
-  font-weight: 700;
 }
 
 /* Full Page Container Styling */

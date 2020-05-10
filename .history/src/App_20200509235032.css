@@ -38,18 +38,15 @@ button {
   text-transform: uppercase;
   max-height: 4rem;
   border: none;
-  background-color: transparent;
+  background
 }
 
 button:focus {
   outline: none;
 }
-button:active {
-  color: black;
-}
+
 button:hover {
   cursor: pointer;
-  font-weight: 700;
 }
 
 /* Full Page Container Styling */

@@ -43,13 +43,11 @@ button {
 
 button:focus {
   outline: none;
+  color:
 }
-button:active {
-  color: black;
-}
+
 button:hover {
   cursor: pointer;
-  font-weight: 700;
 }
 
 /* Full Page Container Styling */
