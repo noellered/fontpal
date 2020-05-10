@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/fontpal/static/css/main.50036123.chunk.css",
+    "main.js": "/fontpal/static/js/main.71c3605c.chunk.js",
+    "main.js.map": "/fontpal/static/js/main.71c3605c.chunk.js.map",
+    "runtime-main.js": "/fontpal/static/js/runtime-main.1186118b.js",
+    "runtime-main.js.map": "/fontpal/static/js/runtime-main.1186118b.js.map",
+    "static/js/2.db85a199.chunk.js": "/fontpal/static/js/2.db85a199.chunk.js",
+    "static/js/2.db85a199.chunk.js.map": "/fontpal/static/js/2.db85a199.chunk.js.map",
+    "index.html": "/fontpal/index.html",
+    "precache-manifest.c49022374e4947d8e232203600d5c085.js": "/fontpal/precache-manifest.c49022374e4947d8e232203600d5c085.js",
+    "service-worker.js": "/fontpal/service-worker.js",
+    "static/css/main.50036123.chunk.css.map": "/fontpal/static/css/main.50036123.chunk.css.map",
+    "static/js/2.db85a199.chunk.js.LICENSE.txt": "/fontpal/static/js/2.db85a199.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1186118b.js",
+    "static/js/2.db85a199.chunk.js",
+    "static/css/main.50036123.chunk.css",
+    "static/js/main.71c3605c.chunk.js"
+  ]
+}
