@@ -235,6 +235,7 @@ class Header extends React.Component {
                               defaultValue={1.5}
                               onChange={this.props.onLineHeightChange}
                           />
+                          <div className="range-value">{this.props.lineHeight}</div>
                       </div>
                     </div>
                     <div className="form-container">

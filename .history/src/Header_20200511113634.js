@@ -224,17 +224,18 @@ class Header extends React.Component {
                             />
                         </div>
                         <div className="font-slider">
-                          <FormatLineSpacingRoundedIcon style={{display: 'inline-block', paddingRight: '15px', color: 'white'}}/>
-                          <input style={{width: '90%'}}
-                              type="range"
-                              className="slider"
-                              min={1}
-                              max={2.5}
-                              step={.05}
-                              value={this.props.lineHeight}
-                              defaultValue={1.5}
-                              onChange={this.props.onLineHeightChange}
-                          />
+                        <FormatLineSpacingRoundedIcon style={{display: 'inline-block', paddingRight: '15px', color: 'white'}}/>
+                        <input style={{width: '90%'}}
+                            type="range"
+                            className="slider"
+                            min={1}
+                            max={2.5}
+                            step={.05}
+                            value={this.props.lineHeight}
+                            defaultValue={1.5}
+                            onChange={this.props.onLineHeightChange}
+                        />
+                        <div className="range-value">{this.props.lineHeight}</div>
                       </div>
                     </div>
                     <div className="form-container">
