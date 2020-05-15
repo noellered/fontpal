@@ -65,7 +65,7 @@ header {
 }
 
 .preview-area{
-  max-width: 70%;
+  max-width
   display: inline-flex; 
   flex-grow: 1;
   flex-direction: column;
