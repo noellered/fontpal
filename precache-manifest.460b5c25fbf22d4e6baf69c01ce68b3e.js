@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28f0113182e8ae312b5a512a388f450b",
+    "revision": "f10f1fe6214f1c07799fd5af9b84e6d2",
     "url": "/fontpal/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fontpal/static/css/2.764ccc25.chunk.css"
   },
   {
-    "revision": "2b0acab2cf27509e9f0d",
-    "url": "/fontpal/static/css/main.001c3b6b.chunk.css"
+    "revision": "295c7dd3f4be5fd0ff46",
+    "url": "/fontpal/static/css/main.d96caaa1.chunk.css"
   },
   {
     "revision": "b12af8920fca494af462",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fontpal/static/js/2.8bc25a0f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2b0acab2cf27509e9f0d",
+    "revision": "295c7dd3f4be5fd0ff46",
     "url": "/fontpal/static/js/main.3ac806ee.chunk.js"
   },
   {
