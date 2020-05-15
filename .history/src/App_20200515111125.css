@@ -124,8 +124,6 @@ textarea {
   justify-content: center;
 }
 
-/* Input Slider Styles, multi-browser */
-
 input[type=range]{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -151,7 +149,6 @@ input[type=range]::-moz-range-track {
 input[type=range]::-moz-focus-outer {
   border: 0;
 }
-
 input[type=range]::-moz-range-thumb {
   -webkit-appearance: none;
   border: none;
@@ -161,7 +158,6 @@ input[type=range]::-moz-range-thumb {
   background: white;
   margin-top: -6px;
 }
-
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
@@ -171,7 +167,6 @@ input[type=range]::-webkit-slider-thumb {
   background: white;
   margin-top: -6px;
 }
-
 input[type=range]:hover::-webkit-slider-thumb{
   cursor: pointer;
 }

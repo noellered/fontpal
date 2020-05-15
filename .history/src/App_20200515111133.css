@@ -124,8 +124,6 @@ textarea {
   justify-content: center;
 }
 
-/* Input Slider Styles, multi-browser */
-
 input[type=range]{
   -webkit-appearance: none;
   -moz-appearance: none;

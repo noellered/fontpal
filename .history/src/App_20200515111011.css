@@ -124,8 +124,6 @@ textarea {
   justify-content: center;
 }
 
-/* Input Slider Styles, multi-browser */
-
 input[type=range]{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -139,7 +137,6 @@ input[type=range]::-webkit-slider-runnable-track {
   border: none;
   border-radius: 3px;
 }
-
 input[type=range]::-moz-range-track {
   max-width: 200px;
   height: 1px;
@@ -147,20 +144,10 @@ input[type=range]::-moz-range-track {
   border: none;
   border-radius: 3px;
 }
-
-input[type=range]::-moz-focus-outer {
-  border: 0;
+input[type=range]::-moz-rocus-track:focus {
+  outline: none;
 }
 
-input[type=range]::-moz-range-thumb {
-  -webkit-appearance: none;
-  border: none;
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  background: white;
-  margin-top: -6px;
-}
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -171,7 +158,6 @@ input[type=range]::-webkit-slider-thumb {
   background: white;
   margin-top: -6px;
 }
-
 input[type=range]:hover::-webkit-slider-thumb{
   cursor: pointer;
 }
