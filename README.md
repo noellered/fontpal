@@ -1,6 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Welcome to FontPal
+
+I created this tool so I could easily pair Google Web Fonts without all the bells and whistles of other competing apps.
+I hope y'all enjoy!
+
+[Click here](https://noellered.github.io/fontpal/) to try it for yourself.
+
+
+
 
 ## Available Scripts
+
 
 In the project directory, you can run:
 
