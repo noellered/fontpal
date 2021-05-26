@@ -8,20 +8,20 @@ const HeaderText = ({fontFamily, fontWeight, headerSize}) => {
     const [userInput, setUserInput] = useState('Welcome to FontPal!')
 
     const handleUserInput = (e) => {
-        setUserInput(e.target.value);
+        setState(setUserInput(e.target.value));
     } 
 
-    return(
-        <TextareaAutosize 
-        value={userInput} 
-        onChange={handleUserInput} 
-        key={fontFamily} 
-        spellcheck="false" 
-        className="header-text" 
-        style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
+        return(
+           <TextareaAutosize 
+            value={userInput} 
+            onChange={handleUserInput} 
+            key={fontFamily} 
+            spellcheck="false" 
+            className="header-text" 
+            style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
 
-        </TextareaAutosize>
-    );
+            </TextareaAutosize>
+        );
 }
 
 //Renders Span / Body Text -- accepts fontFamily as prop
@@ -107,7 +107,7 @@ const Body = () => {
     };
         return(
             <div>
-                <div className={`body-div ${gradientChoice}`}> 
+                <div className={`body-div ${myGradient}`}> 
                     <div style={{display: 'flex', flexDirection: 'row'}}> 
                         <Header 
                             onHeaderChange={handleHeaderChange} 

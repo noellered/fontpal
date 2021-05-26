@@ -8,20 +8,20 @@ const HeaderText = ({fontFamily, fontWeight, headerSize}) => {
     const [userInput, setUserInput] = useState('Welcome to FontPal!')
 
     const handleUserInput = (e) => {
-        setUserInput(e.target.value);
+        setState(setUserInput(e.target.value));
     } 
 
-    return(
-        <TextareaAutosize 
-        value={userInput} 
-        onChange={handleUserInput} 
-        key={fontFamily} 
-        spellcheck="false" 
-        className="header-text" 
-        style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
+        return(
+           <TextareaAutosize 
+            value={userInput} 
+            onChange={handleUserInput} 
+            key={fontFamily} 
+            spellcheck="false" 
+            className="header-text" 
+            style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
 
-        </TextareaAutosize>
-    );
+            </TextareaAutosize>
+        );
 }
 
 //Renders Span / Body Text -- accepts fontFamily as prop
@@ -107,15 +107,15 @@ const Body = () => {
     };
         return(
             <div>
-                <div className={`body-div ${gradientChoice}`}> 
+                <div className={`body-div ${state.myGradient}`}> 
                     <div style={{display: 'flex', flexDirection: 'row'}}> 
                         <Header 
                             onHeaderChange={handleHeaderChange} 
                             onHeaderWeightChange={headerWeightChange} 
                             onBodyWeightChange={bodyWeightChange} 
-                            headerValue={headerValue} 
+                            headerValue={state.headerValue} 
                             onBodyChange={handleBodyChange} 
-                            bodyValue={bodyValue} 
+                            bodyValue={state.bodyValue} 
                             onGradientChange={handleGradientChange}
                             onLineHeightChange={handleLineHeightChange}
                             onHeaderSizeChange={handleHeaderSizeChange}
@@ -123,8 +123,8 @@ const Body = () => {
                             style={{display: 'inline', flexGrow: '1'}}
                         />
                         <div className="preview-area">
-                            <HeaderText fontFamily={headerValue} fontWeight={headerFontWeight} headerSize={headerSize}/>
-                            <SpanText fontFamily={bodyValue} fontWeight={bodyFontWeight} lineHeight={lineHeight} bodySize={bodySize}/>
+                            <HeaderText fontFamily={state.headerValue} fontWeight={state.headerFontWeight} headerSize={state.headerSize}/>
+                            <SpanText fontFamily={state.bodyValue} fontWeight={state.bodyFontWeight} lineHeight={state.lineHeight} bodySize={state.bodySize}/>
                             <div style={footerStyle}>Created by <a href="https://noellered.com" target="_blank">NoelleRed</a></div>
                         </div>
                     </div>

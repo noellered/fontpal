@@ -11,17 +11,17 @@ const HeaderText = ({fontFamily, fontWeight, headerSize}) => {
         setUserInput(e.target.value);
     } 
 
-    return(
-        <TextareaAutosize 
-        value={userInput} 
-        onChange={handleUserInput} 
-        key={fontFamily} 
-        spellcheck="false" 
-        className="header-text" 
-        style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
+        return(
+           <TextareaAutosize 
+            value={userInput} 
+            onChange={handleUserInput} 
+            key={fontFamily} 
+            spellcheck="false" 
+            className="header-text" 
+            style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
 
-        </TextareaAutosize>
-    );
+            </TextareaAutosize>
+        );
 }
 
 //Renders Span / Body Text -- accepts fontFamily as prop

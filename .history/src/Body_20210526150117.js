@@ -8,20 +8,20 @@ const HeaderText = ({fontFamily, fontWeight, headerSize}) => {
     const [userInput, setUserInput] = useState('Welcome to FontPal!')
 
     const handleUserInput = (e) => {
-        setUserInput(e.target.value);
+        this.setState(setUserInput(e.target.value));
     } 
 
-    return(
-        <TextareaAutosize 
-        value={userInput} 
-        onChange={handleUserInput} 
-        key={fontFamily} 
-        spellcheck="false" 
-        className="header-text" 
-        style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
+        return(
+           <TextareaAutosize 
+            value={userInput} 
+            onChange={handleUserInput} 
+            key={fontFamily} 
+            spellcheck="false" 
+            className="header-text" 
+            style={{fontFamily, fontWeight, fontSize: `${headerSize}rem`}}>
 
-        </TextareaAutosize>
-    );
+            </TextareaAutosize>
+        );
 }
 
 //Renders Span / Body Text -- accepts fontFamily as prop
@@ -54,7 +54,7 @@ const Body = () => {
 
 
     //Sets font choice for Header text
-    const handleHeaderChange = (e) => {
+    handleHeaderChange = (e) => {
         let fontChoice = e.value;
         setHeaderValue(fontChoice);
         setHeaderLabel(e);
@@ -62,75 +62,78 @@ const Body = () => {
 
 
     //Sets font choice for Body text
-    const handleBodyChange = (e) => {
+    handleBodyChange = (e) => {
         let fontChoice = e.value;
         setBodyValue(fontChoice);
         setBodyLabel(e);
     }
     
 
-    const handleGradientChange = (gradient) => {
-        setGradientChoice(gradient.value);
+    handleGradientChange = (gradient) => {
+        setGradientChoice(selectedOption.value);
     };
 
-    const headerWeightChange = (weight) => {
-        setHeaderFontWeight(weight.value);
+    headerWeightChange = (selectedOption) => {
+        setHeaderFontWeight(selectedOption.value)
+        this.setState({headerFontWeight: selectedOption.value})
     }
 
-    const bodyWeightChange = (weight) => {
-        setBodyFontWeight(weight.value);
+    bodyWeightChange = selectedOption => {
+        this.setState({bodyFontWeight: selectedOption.value})
     }
 
     //Sets line height for body text
-    const handleLineHeightChange = (e) => {
-        setLineHeight(e.target.value);
+    handleLineHeightChange = (e) => {
+        this.setState({lineHeight: e.target.value})
     }
 
-    const handleHeaderSizeChange = (e) => {
-        setHeaderSize(e.target.value);
+    handleHeaderSizeChange = (e) => {
+        this.setState({headerSize: e.target.value})
     }
 
-    const handleBodySizeChange = (e) => {
-        setBodySize(e.target.value);
+    handleBodySizeChange = (e) => {
+        this.setState({bodySize: e.target.value})
     }
 
 
-    const footerStyle = {
-            display: 'block', 
-            width: '100%', 
-            paddingTop: '100px', 
-            paddingBottom: '50px', 
-            bottom: '0', 
-            fontSize: '.6rem', 
-            color: 'white', 
-            textTransform: 'uppercase'
-    };
+    render(){
+        const footerStyle = {
+                display: 'block', 
+                width: '100%', 
+                paddingTop: '100px', 
+                paddingBottom: '50px', 
+                bottom: '0', 
+                fontSize: '.6rem', 
+                color: 'white', 
+                textTransform: 'uppercase'
+        };
         return(
             <div>
-                <div className={`body-div ${gradientChoice}`}> 
+                <div className={`body-div ${this.state.myGradient}`}> 
                     <div style={{display: 'flex', flexDirection: 'row'}}> 
                         <Header 
-                            onHeaderChange={handleHeaderChange} 
-                            onHeaderWeightChange={headerWeightChange} 
-                            onBodyWeightChange={bodyWeightChange} 
-                            headerValue={headerValue} 
-                            onBodyChange={handleBodyChange} 
-                            bodyValue={bodyValue} 
-                            onGradientChange={handleGradientChange}
-                            onLineHeightChange={handleLineHeightChange}
-                            onHeaderSizeChange={handleHeaderSizeChange}
-                            onBodySizeChange={handleBodySizeChange}
+                            onHeaderChange={this.handleHeaderChange} 
+                            onHeaderWeightChange={this.headerWeightChange} 
+                            onBodyWeightChange={this.bodyWeightChange} 
+                            headerValue={this.state.headerValue} 
+                            onBodyChange={this.handleBodyChange} 
+                            bodyValue={this.state.bodyValue} 
+                            onGradientChange={this.handleGradientChange}
+                            onLineHeightChange={this.handleLineHeightChange}
+                            onHeaderSizeChange={this.handleHeaderSizeChange}
+                            onBodySizeChange={this.handleBodySizeChange}
                             style={{display: 'inline', flexGrow: '1'}}
                         />
                         <div className="preview-area">
-                            <HeaderText fontFamily={headerValue} fontWeight={headerFontWeight} headerSize={headerSize}/>
-                            <SpanText fontFamily={bodyValue} fontWeight={bodyFontWeight} lineHeight={lineHeight} bodySize={bodySize}/>
+                            <HeaderText fontFamily={this.state.headerValue} fontWeight={this.state.headerFontWeight} headerSize={this.state.headerSize}/>
+                            <SpanText fontFamily={this.state.bodyValue} fontWeight={this.state.bodyFontWeight} lineHeight={this.state.lineHeight} bodySize={this.state.bodySize}/>
                             <div style={footerStyle}>Created by <a href="https://noellered.com" target="_blank">NoelleRed</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         );
+    }
 }
 
 
