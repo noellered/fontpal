@@ -93,6 +93,8 @@ const Body = () => {
                             onHeaderChange={handleHeaderChange} 
                             onHeaderWeightChange={headerWeightChange} 
                             onBodyWeightChange={bodyWeightChange} 
+                            headerSize={headerSize}
+                            lineHeight={lineHeight}
                             headerValue={headerValue} 
                             onBodyChange={handleBodyChange} 
                             bodyValue={bodyValue} 
@@ -103,6 +105,7 @@ const Body = () => {
                             onLineHeightChange={handleLineHeightChange}
                             onHeaderSizeChange={handleHeaderSizeChange}
                             onBodySizeChange={handleBodySizeChange}
+                            bodySize={bodySize}
                             style={{display: 'inline', flexGrow: '1'}}
                         />
                         <div className="preview-area">
