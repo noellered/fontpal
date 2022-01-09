@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from './Dropdown';
 import Select from 'react-select';
 import WebFont from 'webfontloader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFont} from '@fortawesome/free-solid-svg-icons';
+import { faFont } from '@fortawesome/free-solid-svg-icons';
 import FormatLineSpacingRoundedIcon from '@material-ui/icons/FormatLineSpacingRounded';
 
 
@@ -15,7 +15,7 @@ const gradients = [
     {value: 'orange', label: 'Orange'},
     {value: 'magenta', label: 'Magenta'},
     {value: 'bubblegum', label: 'Bubblegum'},
-    {value:'sherbet', label: 'Sherbet'},
+    {value: 'sherbet', label: 'Sherbet'},
     {value: 'violet', label: 'Violet'},
     {value: 'forest', label: 'Forest'},
     {value: 'dreamy', label: 'Dreamy'},
@@ -32,96 +32,106 @@ const weights = [
   {value: '900', label: 'Black'}
 ]
 
-class Header extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          fonts: [],
-          categories: [],
-          sansSerif: [],
-          serif: [],
-          handwriting: [],
-          display: [],
-          monospace: [],
-          limit: 150,
-          showSSInfo: true,
-          showSerifInfo: true,
-          showDisplayInfo: true,
-          showHandwritingInfo: true,
-          showMonoInfo: true
-        }
-      }
+const Header = ({
+  onHeaderChange,
+  onHeaderWeightChange,
+  onBodyWeightChange,
+  headerValue,
+  headerSize,
+  lineHeight,
+  onBodyChange, 
+  bodyValue,
+  gradientValue,
+  headerFontWeight,
+  bodyFontWeight,
+  onGradientChange,
+  onLineHeightChange,
+  onHeaderSizeChange,
+  bodySize,
+  onBodySizeChange,
+}) => {
+
+  const [fonts, setFonts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [sansSerif, setSansSerif] = useState([]);
+  const [serif, setSerif] = useState([]);
+  const [handwriting, setHandwriting] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const [monospace, setMonospace] = useState([]);
+  const [limit, setLimit] = useState(150);
+  const [showSSInfo, setShowSSInfo] = useState(true);
+  const [showSerifInfo, setShowSerifInfo] = useState(true);
+  const [showDisplayInfo, setShowDisplayInfo] = useState(true);
+  const [showHandwritingInfo, setShowHandwritingInfo] = useState(true);
+  const [showMonoInfo, setShowMonoInfo] = useState(true);
+
       
-    hideItems = (e) => {
+    const hideItems = (e) => {
         e.preventDefault();
-        console.log(`you clicked ${e.target.value} button!`);
         if(e.target.value === "Sans-Serif"){
-            this.setState(prevState => ({showSSInfo: !prevState.showSSInfo}));
+          setShowSSInfo(!showSSInfo);
         } else if(e.target.value === "Serif"){
-            this.setState(prevState => ({showSerifInfo: !prevState.showSerifInfo}));
+          setShowSerifInfo(!showSerifInfo);
         } else if (e.target.value === "Display"){
-            this.setState(prevState => ({showDisplayInfo: !prevState.showDisplayInfo}));
+          setShowDisplayInfo(!showDisplayInfo);
         } else if (e.target.value === "Handwriting"){
-            this.setState(prevState => ({showHandwritingInfo: !prevState.showHandwritingInfo}));
+          setShowHandwritingInfo(!showHandwritingInfo);
         }
         else if (e.target.value === "Monospace"){
-            this.setState(prevState => ({showMonoInfo: !prevState.showMonoInfo}));
+          setShowMonoInfo(!showMonoInfo);
         }
         
     }
     
     //Fetches Google Fonts by popularity and sets fonts state to array of all google font family names - limited to 100 by default
-      componentDidMount(){
-        fetch('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyDSHr-iLuL_U335Y437hDvqNFSuv1jAkSI')
-          .then(res => {
-              return res.json();
-          }).then((JSON) => {
-            this.setState({
-              fonts: JSON.items.map(item => item.family),
-              categories: JSON.items.map(item => item.category)
-            });
-    
-            
-            const sansSerifFonts = [];
-            const serifFonts = [];
-            const handwritingFonts = [];
-            const displayFonts = [];
-            const monospaceFonts = [];
-    
-            //iterate through fonts array and categorize fonts by type (limited to 100 by default)
-            for(var i=0; i < this.state.limit; i++){
-              if(this.state.categories[i] === "sans-serif"){
-                sansSerifFonts.push(this.state.fonts[i]);
-              } else if(this.state.categories[i] === "serif"){
-                serifFonts.push(this.state.fonts[i]);
-              } else if(this.state.categories[i] === "handwriting"){
-                handwritingFonts.push(this.state.fonts[i]);
-              } else if(this.state.categories[i] === "display"){
-                displayFonts.push(this.state.fonts[i]);
-              } else if(this.state.categories[i] === "monospace"){
-                monospaceFonts.push(this.state.fonts[i]);
+    useEffect(() => {
+      fetch('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyDSHr-iLuL_U335Y437hDvqNFSuv1jAkSI')
+        .then(res => {
+            return res.json();
+        }).then((JSON) => {
+          let fontArr = JSON.items.map(item => item.family);
+          let categoryArr = JSON.items.map(item => item.category);
+          setFonts(fontArr)
+          setCategories(categoryArr)
+
+
+          const sansSerifFonts = [];
+          const serifFonts = [];
+          const handwritingFonts = [];
+          const displayFonts = [];
+          const monospaceFonts = [];
+  
+          //iterate through fonts array and categorize fonts by type (limited to 100 by default)
+          for(var i=0; i < limit; i++){
+            if(categories[i] === "sans-serif"){
+              sansSerifFonts.push(fonts[i]);
+            } else if(categories[i] === "serif"){
+              serifFonts.push(fonts[i]);
+            } else if(categories[i] === "handwriting"){
+              handwritingFonts.push(fonts[i]);
+            } else if(categories[i] === "display"){
+              displayFonts.push(fonts[i]);
+            } else if(categories[i] === "monospace"){
+              monospaceFonts.push(fonts[i]);
+            }
+          }
+
+          for(let i=0; i < limit; i++){
+            WebFont.load({ //loads webfont from Google 
+              google: {
+                  families: [`${fonts[i]}:100,300,400,500,700,900`]
               }
-            }
-            for(let i=0; i < this.state.limit; i++){
-              WebFont.load({ //loads webfont from Google 
-                google: {
-                    families: [`${this.state.fonts[i]}:100,300,400,500,700,900`]
-                }
             });
-            }
-            this.setState({
-              sansSerif: sansSerifFonts,
-              serif: serifFonts,
-              handwriting: handwritingFonts,
-              display: displayFonts,
-              monospace: monospaceFonts
-            })
-          })
-      }
+          }
+          setSansSerif(sansSerifFonts);
+          setSerif(serifFonts);
+          setHandwriting(handwritingFonts);
+          setDisplay(displayFonts);
+          setMonospace(monospaceFonts);
+        })
+    }, [categories, fonts, limit]);
 
 
-
-    render(){
 
         const customStyles = {
             option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -150,7 +160,7 @@ class Header extends React.Component {
 
         const formatGroupLabel = data => (
             <div>  
-                <button style={groupStyles} onClick={this.hideItems} value={data.label}>
+                <button style={groupStyles} onClick={hideItems} value={data.label}>
                     {data.label}
                 </button>
             </div>
@@ -158,11 +168,11 @@ class Header extends React.Component {
         
       
 
-        const sansSerifFonts = this.state.sansSerif.map(family => ({value: family, label: family, fontname: family, display: this.state.showSSInfo ? 'block' : 'none'}));
-        const serifFonts = this.state.serif.map(family => ({value: family, label: family, fontname: family, display: this.state.showSerifInfo ? 'block' : 'none'}));
-        const displayFonts = this.state.display.map(family => ({value: family, label: family, fontname: family, display: this.state.showDisplayInfo ? 'block' : 'none'}));
-        const handwritingFonts = this.state.handwriting.map(family => ({value: family, label: family, fontname: family, display: this.state.showHandwritingInfo ? 'block' : 'none'}));
-        const monospaceFonts = this.state.monospace.map(family => ({value: family, label: family, fontname: family, display: this.state.showMonoInfo ? 'block' : 'none'}));
+        const sansSerifFonts = sansSerif.map(family => ({value: family, label: family, fontname: family, display: showSSInfo ? 'block' : 'none'}));
+        const serifFonts = serif.map(family => ({value: family, label: family, fontname: family, display: showSerifInfo ? 'block' : 'none'}));
+        const displayFonts = display.map(family => ({value: family, label: family, fontname: family, display: showDisplayInfo ? 'block' : 'none'}));
+        const handwritingFonts = handwriting.map(family => ({value: family, label: family, fontname: family, display: showHandwritingInfo ? 'block' : 'none'}));
+        const monospaceFonts = monospace.map(family => ({value: family, label: family, fontname: family, display: showMonoInfo ? 'block' : 'none'}));
         const groupedOptions = [
           {
             label: 'Sans-Serif',
@@ -191,9 +201,9 @@ class Header extends React.Component {
                 <header>
                     <div className="form-container">
                       <label>Header:</label>
-                        <Dropdown defaultValue={{value: this.props.headerValue, label: this.props.headerValue}}  onChange={this.props.onHeaderChange} value={this.props.headerLabel} options={groupedOptions} styles={customStyles} formatGroupLabel={formatGroupLabel}/>
+                        <Dropdown defaultValue={{value: headerValue, label: headerValue}}  onChange={onHeaderChange} options={groupedOptions} styles={customStyles} formatGroupLabel={formatGroupLabel}/>
                         <span style={{display: 'block', margin: '6px'}}/>
-                        <Select defaultValue={{value: this.props.headerFontWeight, label: 'Bold'}} key="headerWeight" className="selector" value={this.props.value} onChange={this.props.onHeaderWeightChange} options={weights} styles={customStyles}/>
+                        <Select defaultValue={{value: headerFontWeight, label: 'Bold'}} key="headerWeight" className="selector" onChange={onHeaderWeightChange} options={weights} styles={customStyles}/>
                         <div className="font-slider">
                           <FontAwesomeIcon icon={faFont} size="xs" style={{display: 'inline-block', paddingTop: '8px', color: 'white'}}/>
                           <FontAwesomeIcon icon={faFont} size="lg" style={{display: 'inline-block', paddingLeft: '3px', paddingRight: '10px', color: 'white'}}/>
@@ -203,17 +213,17 @@ class Header extends React.Component {
                               min={1}
                               max={5}
                               step={.05}
-                              value={this.props.headerSize}
+                              value={headerSize}
                               defaultValue={3}
-                              onChange={this.props.onHeaderSizeChange}
+                              onChange={onHeaderSizeChange}
                           />
                         </div>
                     </div>
                     <div className="form-container">
                       <label>Body:</label>
-                          <Dropdown defaultValue={{value: this.props.bodyValue, label: this.props.bodyValue}} onChange={this.props.onBodyChange} value={this.props.bodyLabel} options={groupedOptions} styles={customStyles} formatGroupLabel={formatGroupLabel}/>
+                          <Dropdown defaultValue={{value: bodyValue, label: bodyValue}} onChange={onBodyChange} options={groupedOptions} styles={customStyles} formatGroupLabel={formatGroupLabel}/>
                           <span style={{display: 'block', margin: '6px'}}/>
-                          <Select defaultValue={{value: this.props.bodyFontWeight, label: 'Light'}} key="bodyWeight" className="selector" value={this.props.value} onChange={this.props.onBodyWeightChange} options={weights} styles={customStyles} />
+                          <Select defaultValue={{value: bodyFontWeight, label: 'Light'}} key="bodyWeight" className="selector" onChange={onBodyWeightChange} options={weights} styles={customStyles} />
                           <div className="font-slider">
                             <FontAwesomeIcon icon={faFont} size="xs" style={{display: 'inline-block', paddingTop: '8px', color: 'white'}}/>
                             <FontAwesomeIcon icon={faFont} size="lg" style={{display: 'inline-block', paddingLeft: '3px', paddingRight: '10px', color: 'white'}}/>
@@ -223,9 +233,9 @@ class Header extends React.Component {
                                 min={1}
                                 max={5}
                                 step={.05}
-                                value={this.props.bodySize}
+                                value={bodySize}
                                 defaultValue={1.5}
-                                onChange={this.props.onBodySizeChange}
+                                onChange={onBodySizeChange}
                             />
                         </div>
                         <div className="font-slider">
@@ -236,19 +246,18 @@ class Header extends React.Component {
                               min={1}
                               max={2.5}
                               step={.05}
-                              value={this.props.lineHeight}
+                              value={lineHeight}
                               defaultValue={1.5}
-                              onChange={this.props.onLineHeightChange}
+                              onChange={onLineHeightChange}
                           />
                       </div>
                     </div>
                     <div className="form-container">
                       <label>Background:</label>
-                      <Select defaultValue={{value: this.props.gradientValue, label: 'Blue'}} className="selector" value={this.props.value} onChange={this.props.onGradientChange} options={gradients} styles={customStyles}/>
+                      <Select defaultValue={{value: gradientValue, label: 'Blue'}} className="selector" onChange={onGradientChange} options={gradients} styles={customStyles}/>
                     </div>
                 </header>
         );
-    }
 }
 
 export default Header;
