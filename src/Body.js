@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import WebFont from 'webfontloader';
 import TextareaAutosize from 'react-autosize-textarea';
 
 
@@ -92,16 +91,6 @@ class Body extends Component {
 
 
     render(){
-        const footerStyle = {
-                display: 'block', 
-                width: '100%', 
-                paddingTop: '100px', 
-                paddingBottom: '50px', 
-                bottom: '0', 
-                fontSize: '.6rem', 
-                color: 'white', 
-                textTransform: 'uppercase'
-        };
         return(
             <div>
                 <div className={`body-div ${this.state.myGradient}`}> 
@@ -125,7 +114,6 @@ class Body extends Component {
                         <div className="preview-area">
                             <HeaderText fontFamily={this.state.headerValue} fontWeight={this.state.headerFontWeight} headerSize={this.state.headerSize}/>
                             <SpanText fontFamily={this.state.bodyValue} fontWeight={this.state.bodyFontWeight} lineHeight={this.state.lineHeight} bodySize={this.state.bodySize}/>
-                            <div style={footerStyle}>Created by <a href="https://noellered.com" target="_blank">NoelleRed</a></div>
                         </div>
                     </div>
                 </div>

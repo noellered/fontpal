@@ -117,7 +117,6 @@ class Header extends React.Component {
               monospace: monospaceFonts
             })
           })
-          console.log(this.state.fonts);
       }
 
 
