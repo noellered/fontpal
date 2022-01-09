@@ -1,125 +1,118 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Header from './Header';
 import TextareaAutosize from 'react-autosize-textarea';
 
 
 //Renders Header Text -- accepts fontFamily as prop
-class HeaderText extends Component {
+const HeaderText = ({ fontFamily, fontWeight, headerSize }) =>{
+    const [userInput, setUserInput] = useState("Welcome to FontPal!")
 
-    state = {
-        userInput: "Welcome to FontPal Beta!"
-    }
 
-    handleUserInput = (e) => {
-        this.setState({userInput: e.target.value});
+    const handleUserInput = (e) => {
+        setUserInput(e.target.value);
     } 
 
-    render(){
         return(
-           <TextareaAutosize value={this.state.userInput} onChange={this.handleUserInput} key={this.props.fontFamily} spellcheck="false" className="header-text" style={{fontFamily: this.props.fontFamily, fontWeight: this.props.fontWeight, fontSize: `${this.props.headerSize}rem`}}></TextareaAutosize>
+           <TextareaAutosize value={userInput} onChange={handleUserInput} key={fontFamily} spellcheck="false" className="header-text" style={{fontFamily: fontFamily, fontWeight: fontWeight, fontSize: `${headerSize}rem`}}></TextareaAutosize>
         );
-    }
 }
 
 //Renders Span / Body Text -- accepts fontFamily as prop
-class SpanText extends Component {
-    render(){
+const SpanText = ({fontFamily, lineHeight, fontWeight, bodySize}) => {
         const defaultText = "This is a font pairing app for Google Web Fonts. The text on this page is editable, so go ahead and try putting in your own. You can change the font family, size, weight, and line height. You can click on the font category name to collapse the corresponding group in the dropdown (an indicator for this is in the works). Don't forget to check out the pre-loaded background gradients for some extra flare! \n \nAs noted above, this is a Beta version. Features are constantly being added, so check back now and then to see what cool new features you can play around with. Happy pairing!"
         return(
-            <TextareaAutosize spellcheck="false" className="body-text" style={{fontFamily: this.props.fontFamily, fontWeight: this.props.fontWeight, lineHeight: this.props.lineHeight, fontSize: `${this.props.bodySize}rem`}}>{defaultText}</TextareaAutosize>
+            <TextareaAutosize spellcheck="false" className="body-text" style={{fontFamily: fontFamily, fontWeight: fontWeight, lineHeight: lineHeight, fontSize: `${bodySize}rem`}}>{defaultText}</TextareaAutosize>
         );
-    }
 }
 
 
 //Combines HeaderText and SpanText into one stylized div
-class Body extends Component {
+const Body = () => {
+    const [headerValue, setHeaderValue] = useState("Rubik");
+    const [bodyValue, setBodyValue] = useState("Open Sans");
+    const [myGradient, setMyGradient] = useState("blue");
+    const [headerLabel, setHeaderLabel] = useState("");
+    const [bodyLabel, setBodyLabel] = useState("");
+    const [headerFontWeight, setHeaderFontWeight] = useState('700');
+    const [bodyFontWeight, setBodyFontWeight] = useState('300');
+    const [lineHeight, setLineHeight] = useState('1.5');
+    const [headerSize, setHeaderSize] = useState('3');
+    const [bodySize, setBodySize] = useState("1.5");
 
-    state = {
-        headerValue: 'Rubik',
-        bodyValue: 'Open Sans',
-        myGradient: 'blue',
-        headerLabel: '', //set labels to selected value
-        bodyLabel: '',
-        headerFontWeight: '700',
-        bodyFontWeight: '300',
-        lineHeight: '1.5',
-        headerSize: '3',
-        bodySize: '1.5'
-    }
+
 
     //Sets font choice for Header text
-    handleHeaderChange = (e) => {
+    const handleHeaderChange = (e) => {
         let fontChoice = e.value;
-        this.setState({headerValue: fontChoice, headerLabel: e});
+        setHeaderValue(fontChoice);
+        setHeaderLabel(e);
     }
 
 
     //Sets font choice for Body text
-    handleBodyChange = (e) => {
+    const handleBodyChange = (e) => {
         let fontChoice = e.value;
-        this.setState({bodyValue: fontChoice, bodyLabel: e});
+        setBodyValue(fontChoice);
+        setBodyLabel(e);
     }
     
 
     //Sets gradient to selected 
-    handleGradientChange = selectedOption => {
-        this.setState({myGradient: selectedOption.value});
+    const handleGradientChange = selectedOption => {
+        setMyGradient(selectedOption.value);
       };
 
     //Sets font weight
-    headerWeightChange = selectedOption => {
-        this.setState({headerFontWeight: selectedOption.value})
+    const headerWeightChange = selectedOption => {
+        setHeaderFontWeight(selectedOption.value);
     }
 
-    bodyWeightChange = selectedOption => {
-        this.setState({bodyFontWeight: selectedOption.value})
+    const bodyWeightChange = selectedOption => {
+        setBodyFontWeight(selectedOption.value);
     }
 
     //Sets line height for body text
-    handleLineHeightChange = (e) => {
-        this.setState({lineHeight: e.target.value})
+    const handleLineHeightChange = (e) => {
+        setLineHeight(e.target.value);
     }
 
-    handleHeaderSizeChange = (e) => {
-        this.setState({headerSize: e.target.value})
+    const handleHeaderSizeChange = (e) => {
+        setHeaderSize(e.target.value);
     }
 
-    handleBodySizeChange = (e) => {
-        this.setState({bodySize: e.target.value})
+    const handleBodySizeChange = (e) => {
+        setBodySize(e.target.value);
     }
 
 
-    render(){
         return(
             <div>
-                <div className={`body-div ${this.state.myGradient}`}> 
+                <div className={`body-div ${myGradient}`}> 
                     <div style={{display: 'flex', flexDirection: 'row'}}> 
                         <Header 
-                            onHeaderChange={this.handleHeaderChange} 
-                            onHeaderWeightChange={this.headerWeightChange} 
-                            onBodyWeightChange={this.bodyWeightChange} 
-                            headerValue={this.state.headerValue} 
-                            onBodyChange={this.handleBodyChange} 
-                            bodyValue={this.state.bodyValue} 
-                            gradientValue={this.state.myGradient}
-                            headerFontWeight={this.state.headerFontWeight}
-                            bodyFontWeight={this.state.bodyFontWeight}
-                            onGradientChange={this.handleGradientChange}
-                            onLineHeightChange={this.handleLineHeightChange}
-                            onHeaderSizeChange={this.handleHeaderSizeChange}
-                            onBodySizeChange={this.handleBodySizeChange}
+                            onHeaderChange={handleHeaderChange} 
+                            onHeaderWeightChange={headerWeightChange} 
+                            onBodyWeightChange={bodyWeightChange} 
+                            headerValue={headerValue} 
+                            onBodyChange={handleBodyChange} 
+                            bodyValue={bodyValue} 
+                            gradientValue={myGradient}
+                            headerFontWeight={headerFontWeight}
+                            bodyFontWeight={bodyFontWeight}
+                            onGradientChange={handleGradientChange}
+                            onLineHeightChange={handleLineHeightChange}
+                            onHeaderSizeChange={handleHeaderSizeChange}
+                            onBodySizeChange={handleBodySizeChange}
                             style={{display: 'inline', flexGrow: '1'}}
                         />
                         <div className="preview-area">
-                            <HeaderText fontFamily={this.state.headerValue} fontWeight={this.state.headerFontWeight} headerSize={this.state.headerSize}/>
-                            <SpanText fontFamily={this.state.bodyValue} fontWeight={this.state.bodyFontWeight} lineHeight={this.state.lineHeight} bodySize={this.state.bodySize}/>
+                            <HeaderText fontFamily={headerValue} fontWeight={headerFontWeight} headerSize={headerSize}/>
+                            <SpanText fontFamily={bodyValue} fontWeight={bodyFontWeight} lineHeight={lineHeight} bodySize={bodySize}/>
                         </div>
                     </div>
                 </div>
             </div>
         );
-    }
 }
 
 
